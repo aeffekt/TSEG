@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3 class="mb-3">Equipos de {{ client.client_name }} ({{ equipments.total }})</h3>
+    {% for equipment in equipments.items %}
+        <article class="media content-section">
+          	<div class="media-body">
+            	<div class="article-metadata">
+              		<a class="mr-2" href="{{ url_for('clients.client_equipments', client_name=equipment.owner.client_name) }}">{{ equipment.owner.client_name }}</a>
+              		<small class="text-muted">{{ equipment.last_modified.strftime('%Y-%m-%d') }}</small>
+            	</div>
+            	<h2><a class="article-title" href="{{ url_for('equipments.equipment', equipment_id=equipment.id) }}">{{ equipment.title }}</a></h2>
+            	<p class="article-content">{{ equipment.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+    {% for page_num in equipments.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+        {% if equipments.page == page_num %}
+            <a class="btn btn-info mb-4" href="{{ url_for('clients.client_equipments', client_name=client.client_name, page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+            <a class="btn btn-outline-info mb-4" href="{{ url_for('clients.client_equipments', client_name=client.client_name, page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+    {% else %}
+        ...
+    {% endif %}
+    {% endfor %}
+{% endblock content %}

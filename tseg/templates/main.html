@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class='content-section'>
+        <h1 class="aticle-title mb-5">Bienvenido al programa de seguimiento de equipos de L.I.E. S.R.L.</h1>
+        <div class="article-content mt-5">
+            <h4><p>Cada usuario debe crear una cuenta usando: Nombre, Mail y Contraseña.</p></h4>
+            <p>Con ello podrá crear nuevos equipos, asociarlos a clientes, hacer búsquedas por palabras clave, y dejar registrado cada cambio añadiendo comentarios a cada elemento.</p>
+            {% if not current_user.is_authenticated %}
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('users.login') }}">Iniciar sesión</a>
+            {%endif%}
+        </div>
+    </div>
+{% endblock content %}

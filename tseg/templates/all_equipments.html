@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for equipment in all_equipments.items %}
+        <article class="media content-section">
+          	<div class="media-body">
+            	<div class="article-metadata">
+                    <h3><a class="article-title" href="{{ url_for('equipments.equipment', equipment_id=equipment.id) }}">{{ equipment.title }}</a></h3>
+            	</div>
+            	<H5><p class="article-title" href="">{{ equipment.content }}</p></H5>
+            	<p class="article-content">Pertenece a: {{ equipment.owner.client_name }}</p>
+                <p class="article-content">Equipo creado por: {{ equipment.author_eq.username }}</p>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.new_post', parent_name='equipment', parent_id=equipment.id) }}">Comentar</a>
+          </div>
+        </article>
+    {% endfor %}
+    {% for page_num in all_equipments.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+        {% if all_equipments.page == page_num %}
+            <a class="btn btn-info mb-4" href="{{ url_for('equipments.all_equipments', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+            <a class="btn btn-outline-info mb-4" href="{{ url_for('equipments.all_equipments', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+    {% else %}
+        ...
+    {% endif %}
+    {% endfor %}
+{% endblock content %}
