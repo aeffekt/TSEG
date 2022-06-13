@@ -4,13 +4,15 @@
       	<div class="media-body">
         	<div class="article-metadata">
               <div>
-                  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('clients.update_client', client_id=client.id) }}">Editar cliente</a>
-                  <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Eliminar cliente</button>
+                  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('clients.update_client', client_id=client.id) }}">Editar</a>
+                  <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Eliminar</button>
               </div>
         	</div>
         	<h2 class="aticle-title">{{ client.client_name }}</h2>
         	<p class="article-content">{{ client.business_name }}</p>
           <p class="article-content">{{ client.contact }}</p>
+          <p class="article-content">{{ client.comments }}</p>
+          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('equipments.add_equipment', client_name=client.client_name, client_id=client.id) }}">Agregar Equipo a este cliente</a>
       </div>
     </article>
      <!-- Modal -->

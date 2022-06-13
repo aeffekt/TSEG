@@ -68,6 +68,7 @@ class Client(db.Model):
 	client_name = db.Column(db.String(150), unique=False, nullable=False)
 	business_name = db.Column(db.String(150), unique=False, nullable=False)
 	contact = db.Column(db.String(250), unique=False, nullable=False)
+	comments = db.Column(db.Text)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 	equipments = db.relationship('Equipment', backref='owner', lazy=True)
 

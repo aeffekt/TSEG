@@ -9,9 +9,7 @@
             	<h4 class="article-title" href=""> {{ client.business_name }}</h4>
             	<p class="article-content">Contacto: {{ client.contact }}</p>
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('clients.client_equipments', client_name=client.client_name) }}">VER EQUIPOS</a>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('equipments.add_equipment', client_name=client.client_name) }}">Agregar Equipo</a>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.new_post', parent_name='client', parent_id=client.id) }}">Comentar</a>
-                
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('equipments.add_equipment', client_id = client.id) }}">Crear Equipo</a>
           </div>
         </article>
     {% endfor %}

@@ -66,13 +66,13 @@
 		        <div class="col-md-4">
 		        	<div class="sticky-top">
 		          		<div class="content-section">
-		          			<h3>MENU: </h3><input type="text" id="buscar" placeholder="Buscar"></input>
+		          			<input type="text" id="buscar" placeholder="Buscar"></input>
 		          			{% if current_user.is_authenticated %}
 			            		<p class='text-muted'>
 					              	<ul class="list-group">
 					              		<a class="nav-item nav-link" href="{{ url_for('clients.add_client') }}">
 					                	<li class="list-group-item list-group-item-light", style="background-color: #DDEFFF;">Agregar Cliente nuevo</li></a>
-					              		<a class="nav-item nav-link" href="{{ url_for('equipments.add_equipment', client_name='nombre') }}">
+					              		<a class="nav-item nav-link" href="{{ url_for('equipments.add_equipment', client_id=0) }}">
 					                	<li class="list-group-item list-group-item-light", style="background-color: #DDEFFF;">Agregar Equipo nuevo</li></a>
 					              	</ul>
 			            		</p>

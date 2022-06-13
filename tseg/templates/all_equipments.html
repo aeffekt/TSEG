@@ -1,17 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
     {% for equipment in all_equipments.items %}
+
         <article class="media content-section">
           	<div class="media-body">
             	<div class="article-metadata">
                     <h3><a class="article-title" href="{{ url_for('equipments.equipment', equipment_id=equipment.id) }}">{{ equipment.title }}</a></h3>
             	</div>
             	<H5><p class="article-title" href="">{{ equipment.content }}</p></H5>
-            	<p class="article-content">Pertenece a: {{ equipment.owner.client_name }}</p>
-                <p class="article-content">Equipo creado por: {{ equipment.author_eq.username }}</p>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.new_post', parent_name='equipment', parent_id=equipment.id) }}">Comentar</a>
+            	<p class="article-content">Cliente: {{ equipment.owner.client_name }}</p>
+                <p class="article-content">Creado por: {{ equipment.author_eq.username }}</p>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.new_post', parent_name='equipment', parent_id=equipment.id) }}">Añadir Comentario</a>
           </div>
-        </article>
+      </article>
     {% endfor %}
     {% for page_num in all_equipments.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
     {% if page_num %}

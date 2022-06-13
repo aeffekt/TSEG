@@ -31,6 +31,7 @@ def add_client():
 		client = Client(client_name=form.client_name.data, 
 						business_name=form.business_name.data, 
 						contact=form.contact.data,
+						comments=form.comments.data,
 						author_cl=current_user)
 		db.session.add(client)
 		db.session.commit()
@@ -49,6 +50,7 @@ def update_client(client_id):
 		client.client_name = form.client_name.data
 		client.business_name = form.business_name.data
 		client.contact = form.contact.data
+		client.comments = form.comments.data
 		db.session.commit()
 		flash("El cliente ha sido editado con éxito", 'success')
 		return redirect(url_for('clients.client', client_id=client.id))
@@ -56,6 +58,7 @@ def update_client(client_id):
 		form.client_name.data = client.client_name
 		form.business_name.data = client.business_name
 		form.contact.data = client.contact
+		form.comments.data = client.comments
 	return render_template('create_client.html',title='Editar cliente', 
 												form=form,
 												legend="Editar cliente")
@@ -77,4 +80,4 @@ def client_equipments(client_name):
 	equipments = Equipment.query.filter_by(owner=client)\
 					.order_by(Equipment.last_modified.desc())\
 					.paginate(page=page, per_page=5)
-	return render_template('client_equipments.html', equipments=equipments, client=client)
+	return render_template('client_equipments.html', title=client.client_name, equipments=equipments, client=client)
